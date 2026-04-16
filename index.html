@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R. Lahari Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#0a0a0a;color:#fff;overflow-x:hidden}
+section{padding:100px 10%}
+body::before{content:"";position:fixed;width:600px;height:600px;background:radial-gradient(circle,#6c63ff,transparent);top:-200px;left:-200px;filter:blur(150px);z-index:-1}
+
+h2{font-size:32px;margin-bottom:20px}
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.hero h1{font-size:60px;background:linear-gradient(90deg,#6c63ff,#00d4ff);-webkit-background-clip:text;color:transparent}
+.hero p{margin-top:10px;color:#aaa;font-size:18px}
+.typing{color:#6c63ff}
+.btn{margin-top:25px;padding:12px 30px;border:none;background:linear-gradient(90deg,#6c63ff,#00d4ff);border-radius:30px;color:white;cursor:pointer;transition:0.4s}
+.btn:hover{transform:scale(1.1);box-shadow:0 0 20px #6c63ff}
+.glass{background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border-radius:20px;padding:25px;transition:0.4s}
+.glass:hover{transform:translateY(-10px) scale(1.03)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}
+.skills span{display:inline-block;margin:8px;padding:10px 18px;border-radius:20px;background:#111;transition:0.3s}
+.skills span:hover{background:#6c63ff;transform:scale(1.2);box-shadow:0 0 15px #6c63ff}
+.reveal{opacity:0;transform:translateY(80px);transition:1s}
+.reveal.active{opacity:1;transform:translateY(0)}
+.cursor{position:fixed;width:20px;height:20px;border-radius:50%;background:#6c63ff;pointer-events:none;mix-blend-mode:difference;transform:translate(-50%,-50%)}
+.small{color:#aaa;font-size:14px}
+.card-title{font-weight:600;margin-bottom:10px}
+a{color:#00d4ff;text-decoration:none}
+</style>
+</head>
+
+<body>
+<div class="cursor"></div>
+
+<section class="hero">
+<h1>R. Lahari 👋</h1>
+<p><span class="typing"></span></p>
+<p class="small">Aspiring Web Developer passionate about building clean and responsive web applications.</p>
+<button class="btn" onclick="scrollToSection('internship')">View Projects</button>
+</section>
+
+<section class="reveal">
+<h2>About Me</h2>
+<div class="glass">
+<p>
+🎓 B.Tech – Artificial Intelligence & Data Science<br>
+🏫 Annamacharya Institute of Technology and Sciences (CGPA: 8.5)<br>
+💡 Interested in Web Development & AI-based solutions<br>
+🎯 Goal: Become a Web Developer
+</p>
+</div>
+</section>
+
+<section class="skills reveal">
+<h2>Skills</h2>
+<span>HTML</span>
+<span>CSS</span>
+<span>JavaScript</span>
+<span>Python</span>
+</section>
+
+<section id="internship" class="reveal">
+<h2>Mini Projects</h2>
+<div class="grid">
+<div class="glass">
+<div class="card-title">Smart City</div>
+<p class="small">Responsive login interface</p>
+<p class="small">Tech: HTML, CSS</p>
+<p><a href="https://attached-assets--renubhupathi42.replit.app" target="_blank">Live Demo</a></p>
+</div>
+
+<div class="glass">
+<div class="card-title">Skill Graph AI</div>
+<p class="small">Real-time Skill Analysis</p>
+<p class="small">Tech: HTML, CSS, JS</p>
+<p><a href="https://resume33-kappa.vercel.app" target="_blank">Live Demo</a></p>
+</div>
+
+<div class="glass">
+<div class="card-title">Mental health</div>
+<p class="small">To Track the health Condition</p>
+<p class="small">Tech: HTML, CSS, JS</p>
+<p><a href="https://mentalhealth-a6bkfb2jh-rlahari110607-codes-projects.vercel.app" target="_blank">Live Demo</a></p>
+</div>
+</div>
+</section>
+
+<section class="reveal" style="text-align:center">
+<h2>Contact</h2>
+<p>Email: r.lahari110607@gmail.com</p>
+<p>Phone: +91-7981729662</p>
+<p>GitHub: </p>
+<button class="btn">Hire Me</button>
+</section>
+
+<script>
+function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+
+const roles=["Web Development Intern","AI Enthusiast"];
+let i=0,j=0,current="",del=false;
+function type(){
+current=roles[i];
+document.querySelector('.typing').textContent=current.substring(0,j);
+if(!del && j<current.length) j++;
+else if(del && j>0) j--;
+else{del=!del;if(!del)i=(i+1)%roles.length;}
+setTimeout(type,del?50:100);
+}
+type();
+
+window.addEventListener('scroll',()=>{
+document.querySelectorAll('.reveal').forEach(el=>{
+if(el.getBoundingClientRect().top < window.innerHeight-100){el.classList.add('active');}
+});
+});
+
+const cursor=document.querySelector('.cursor');
+document.addEventListener('mousemove',e=>{
+cursor.style.top=e.clientY+'px';cursor.style.left=e.clientX+'px';});
+</script>
+
+</body>
+</html>
